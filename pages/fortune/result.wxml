@@ -1,0 +1,79 @@
+<view class="container">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-info">
+      <text class="name">{{userInfo.name}}</text>
+      <text class="birth-info">{{userInfo.birthDate}} {{userInfo.timeRange}}</text>
+    </view>
+    <view class="mbti-tag">{{userInfo.mbtiType}}</view>
+  </view>
+
+  <!-- 分析结果区域 -->
+  <view class="analysis-section">
+    <!-- 五行分析 -->
+    <view class="analysis-card">
+      <view class="card-title">
+        <text class="title-text">五行分析</text>
+        <text class="title-desc">基于八字命理</text>
+      </view>
+      <view class="elements-chart">
+        <view class="element-item" wx:for="{{elements}}" wx:key="name">
+          <view class="element-bar" style="height: {{item.value}}%">
+            <text class="element-value">{{item.value}}%</text>
+          </view>
+          <text class="element-name">{{item.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 运势解读 -->
+    <view class="analysis-card">
+      <view class="card-title">
+        <text class="title-text">运势解读</text>
+        <text class="title-desc">结合MBTI特质</text>
+      </view>
+      <view class="fortune-content">
+        <view class="fortune-item">
+          <text class="item-title">事业发展</text>
+          <text class="item-content">{{fortune.career}}</text>
+        </view>
+        <view class="fortune-item">
+          <text class="item-title">感情运势</text>
+          <text class="item-content">{{fortune.love}}</text>
+        </view>
+        <view class="fortune-item">
+          <text class="item-title">财运分析</text>
+          <text class="item-content">{{fortune.wealth}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 吉凶提醒 -->
+    <view class="analysis-card">
+      <view class="card-title">
+        <text class="title-text">吉凶提醒</text>
+        <text class="title-desc">趋吉避凶指引</text>
+      </view>
+      <view class="tips-content">
+        <view class="tips-group">
+          <text class="tips-label good">宜</text>
+          <view class="tips-items">
+            <text wx:for="{{tips.good}}" wx:key="*this" class="tip-item">{{item}}</text>
+          </view>
+        </view>
+        <view class="tips-group">
+          <text class="tips-label bad">忌</text>
+          <view class="tips-items">
+            <text wx:for="{{tips.bad}}" wx:key="*this" class="tip-item">{{item}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部按钮区 -->
+  <view class="action-area">
+    <button class="consult-btn" bindtap="startConsult">继续对话咨询</button>
+    <button class="share-btn" open-type="share">分享结果</button>
+  </view>
+</view>
