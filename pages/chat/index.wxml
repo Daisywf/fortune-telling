@@ -1,0 +1,101 @@
+<view class="container">
+  <!-- 聊天消息列表 -->
+  <scroll-view 
+    class="chat-list" 
+    scroll-y 
+    scroll-into-view="{{scrollToMessage}}"
+    bindscrolltoupper="loadMoreMessages"
+  >
+    <!-- 剩余次数提示 -->
+    <view class="quota-tip" wx:if="{{remainingQuota > 0}}">
+      剩余免费咨询次数：{{remainingQuota}}次
+    </view>
+    <view class="quota-tip warning" wx:else>
+      免费次数已用完，请打赏后继续咨询
+    </view>
+
+    <!-- 消息列表 -->
+    <view class="message-list">
+      <!-- 默认开场白 -->
+      <view class="message system">
+        您好，我是您的AI命理顾问。我可以为您解答命理相关的问题，比如：
+        <view class="suggestion-list">
+          <text>• 我的事业发展方向是什么？</text>
+          <text>• 最近的感情运势如何？</text>
+          <text>• 我适合做什么类型的工作？</text>
+        </view>
+      </view>
+
+      <!-- 聊天记录 -->
+      <view 
+        wx:for="{{messages}}" 
+        wx:key="id" 
+        class="message {{item.type}}"
+        id="msg-{{item.id}}"
+      >
+        <view class="avatar" wx:if="{{item.type === 'ai'}}">AI</view>
+        <view class="content">{{item.content}}</view>
+        <view class="avatar user-avatar" wx:if="{{item.type === 'user'}}">我</view>
+      </view>
+
+      <!-- 正在输入提示 -->
+      <view class="message ai typing" wx:if="{{isTyping}}">
+        <view class="avatar">AI</view>
+        <view class="typing-indicator">
+          <view class="dot"></view>
+          <view class="dot"></view>
+          <view class="dot"></view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <!-- 输入区域 -->
+  <view class="input-area {{isInputDisabled ? 'disabled' : ''}}">
+    <view class="input-wrapper">
+      <input 
+        type="text" 
+        confirm-type="send"
+        placeholder="{{inputPlaceholder}}"
+        value="{{inputValue}}"
+        disabled="{{isInputDisabled}}"
+        bindinput="onInput"
+        bindconfirm="sendMessage"
+      />
+      <button 
+        class="send-btn {{inputValue ? 'active' : ''}}" 
+        bindtap="sendMessage"
+        disabled="{{!inputValue || isInputDisabled}}"
+      >发送</button>
+    </view>
+
+    <!-- 付费提示 -->
+    <view class="payment-tip" wx:if="{{isInputDisabled}}">
+      <text>免费次数已用完</text>
+      <button class="reward-btn" bindtap="showPayment">打赏继续</button>
+    </view>
+  </view>
+
+  <!-- 支付弹窗 -->
+  <view class="payment-modal" wx:if="{{showPaymentModal}}">
+    <view class="modal-content">
+      <view class="modal-title">请选择打赏金额</view>
+      <view class="amount-list">
+        <view 
+          wx:for="{{paymentAmounts}}" 
+          wx:key="amount"
+          class="amount-item {{selectedAmount === item.amount ? 'selected' : ''}}"
+          bindtap="selectAmount"
+          data-amount="{{item.amount}}"
+        >
+          <text class="amount">¥{{item.amount}}</text>
+          <text class="desc">{{item.desc}}</text>
+        </view>
+      </view>
+      <view class="modal-buttons">
+        <button class="cancel-btn" bindtap="closePayment">取消</button>
+        <button class="confirm-btn" bindtap="processPayment">确认支付</button>
+      </view>
+    </view>
+  </view>
+</view>
