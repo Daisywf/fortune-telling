@@ -1,0 +1,199 @@
+.container {
+  min-height: 100vh;
+  background-color: #1a1a2e;
+  padding: 30rpx;
+  padding-bottom: 180rpx;
+}
+
+/* 用户信息卡片 */
+.user-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 36rpx;
+  color: #fff;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.birth-info {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.mbti-tag {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  padding: 10rpx 20rpx;
+  border-radius: 10rpx;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+/* 分析卡片通用样式 */
+.analysis-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+}
+
+.card-title {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 30rpx;
+}
+
+.title-text {
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: bold;
+  margin-right: 20rpx;
+}
+
+.title-desc {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+/* 五行图表 */
+.elements-chart {
+  display: flex;
+  justify-content: space-between;
+  height: 300rpx;
+  align-items: flex-end;
+  padding: 20rpx 0;
+}
+
+.element-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 18%;
+}
+
+.element-bar {
+  width: 100%;
+  background: linear-gradient(180deg, #ff6b6b, #4ecdc4);
+  border-radius: 10rpx;
+  position: relative;
+  transition: height 0.3s;
+}
+
+.element-value {
+  position: absolute;
+  top: -40rpx;
+  width: 100%;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+}
+
+.element-name {
+  margin-top: 20rpx;
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 运势内容 */
+.fortune-content {
+  color: #fff;
+}
+
+.fortune-item {
+  margin-bottom: 30rpx;
+}
+
+.item-title {
+  display: block;
+  font-size: 28rpx;
+  color: #4ecdc4;
+  margin-bottom: 10rpx;
+}
+
+.item-content {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+/* 吉凶提醒 */
+.tips-group {
+  margin-bottom: 30rpx;
+}
+
+.tips-label {
+  display: inline-block;
+  padding: 6rpx 20rpx;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.tips-label.good {
+  background: rgba(78, 205, 196, 0.2);
+  color: #4ecdc4;
+}
+
+.tips-label.bad {
+  background: rgba(255, 107, 107, 0.2);
+  color: #ff6b6b;
+}
+
+.tips-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tip-item {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.8);
+  margin-right: 30rpx;
+  margin-bottom: 10rpx;
+}
+
+/* 底部按钮 */
+.action-area {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 30rpx;
+  background: rgba(26, 26, 46, 0.9);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: space-between;
+}
+
+.consult-btn, .share-btn {
+  width: 48%;
+  height: 88rpx;
+  border-radius: 44rpx;
+  font-size: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.consult-btn {
+  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+  color: #fff;
+  border: none;
+}
+
+.share-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1rpx solid rgba(255, 255, 255, 0.2);
+}
