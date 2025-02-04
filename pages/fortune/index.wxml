@@ -1,0 +1,77 @@
+<view class="container">
+  <view class="form-section">
+    <!-- 标题 -->
+    <view class="section-title">信息填写</view>
+
+    <!-- 基本信息 -->
+    <view class="form-group">
+      <view class="group-title">基本信息</view>
+      
+      <!-- 姓名 -->
+      <view class="input-item">
+        <text class="label">姓名</text>
+        <input 
+          type="text" 
+          placeholder="请输入姓名" 
+          placeholder-class="placeholder"
+          bindinput="onNameInput"
+          value="{{formData.name}}"
+        />
+      </view>
+
+      <!-- 生日 -->
+      <view class="input-item">
+        <text class="label">生日</text>
+        <picker 
+          mode="date" 
+          bindchange="onBirthDateChange"
+          value="{{formData.birthDate}}"
+        >
+          <view class="picker {{formData.birthDate ? '' : 'placeholder'}}">
+            {{formData.birthDate || '请选择出生日期'}}
+          </view>
+        </picker>
+      </view>
+
+      <!-- 出生时辰 -->
+      <view class="input-item">
+        <text class="label">出生时辰</text>
+        <picker 
+          mode="selector" 
+          range="{{timeRanges}}"
+          bindchange="onTimeRangeChange"
+          value="{{formData.timeRangeIndex}}"
+        >
+          <view class="picker {{formData.timeRangeIndex !== null ? '' : 'placeholder'}}">
+            {{formData.timeRangeIndex !== null ? timeRanges[formData.timeRangeIndex] : '请选择出生时辰'}}
+          </view>
+        </picker>
+      </view>
+    </view>
+
+    <!-- MBTI类型 -->
+    <view class="form-group">
+      <view class="group-title">MBTI类型</view>
+      <view class="mbti-section">
+        <view class="mbti-picker">
+          <picker 
+            mode="selector" 
+            range="{{mbtiTypes}}"
+            bindchange="onMbtiChange"
+            value="{{formData.mbtiIndex}}"
+          >
+            <view class="picker {{formData.mbtiIndex !== null ? '' : 'placeholder'}}">
+              {{formData.mbtiIndex !== null ? mbtiTypes[formData.mbtiIndex] : '选择类型'}}
+            </view>
+          </picker>
+        </view>
+        <view class="mbti-tip" bindtap="navigateToMbti">
+          不知道自己的MBTI类型？点击测试 >
+        </view>
+      </view>
+    </view>
+
+    <!-- 提交按钮 -->
+    <button class="submit-btn" bindtap="onSubmit">开始分析</button>
+  </view>
+</view>
