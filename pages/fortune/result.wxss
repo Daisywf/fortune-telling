@@ -1,199 +1,72 @@
-.container {
-  min-height: 100vh;
-  background-color: #1a1a2e;
-  padding: 30rpx;
-  padding-bottom: 180rpx;
-}
+<view class="container">
+  <!-- 用户信息卡片 -->
+  <view class="user-card">
+    <view class="user-info">
+      <text class="name">{{userInfo.name}}</text>
+      <text class="birth-info">{{userInfo.birthDate}} {{userInfo.timeRange}}</text>
+    </view>
+    <view class="mbti-tag">{{userInfo.mbtiType}}</view>
+  </view>
 
-/* 用户信息卡片 */
-.user-card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20rpx;
-  padding: 30rpx;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30rpx;
-}
+  <!-- 五行分析图表 -->
+  <view class="analysis-card">
+    <view class="card-title">
+      <text class="title-text">五行分析</text>
+      <text class="title-desc">基于八字命理</text>
+    </view>
+    <view class="elements-chart">
+      <view class="element-item" wx:for="{{elements}}" wx:key="name">
+        <view class="element-bar" style="height: {{item.value}}%">
+          <text class="element-value">{{item.value}}%</text>
+        </view>
+        <text class="element-name">{{item.name}}</text>
+      </view>
+    </view>
+  </view>
 
-.user-info {
-  display: flex;
-  flex-direction: column;
-}
+  <!-- 运势解读 -->
+  <view class="analysis-card">
+    <view class="card-title">
+      <text class="title-text">运势解读</text>
+      <text class="title-desc">结合MBTI特质</text>
+    </view>
+    <view class="fortune-content">
+      <view class="fortune-item">
+        <text class="item-title">事业发展</text>
+        <text class="item-content">{{fortune.career}}</text>
+      </view>
+      <view class="fortune-item">
+        <text class="item-title">感情运势</text>
+        <text class="item-content">{{fortune.love}}</text>
+      </view>
+      <view class="fortune-item">
+        <text class="item-title">财运分析</text>
+        <text class="item-content">{{fortune.wealth}}</text>
+      </view>
+    </view>
+  </view>
 
-.name {
-  font-size: 36rpx;
-  color: #fff;
-  font-weight: bold;
-  margin-bottom: 10rpx;
-}
+  <!-- 吉凶提醒 -->
+  <view class="analysis-card">
+    <view class="tips-content">
+      <view class="tips-group">
+        <text class="tips-label good">宜</text>
+        <view class="tips-items">
+          <text wx:for="{{tips.good}}" wx:key="*this" class="tip-item">{{item}}</text>
+        </view>
+      </view>
+      <view class="tips-group">
+        <text class="tips-label bad">忌</text>
+        <view class="tips-items">
+          <text wx:for="{{tips.bad}}" wx:key="*this" class="tip-item">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
 
-.birth-info {
-  font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-.mbti-tag {
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-  padding: 10rpx 20rpx;
-  border-radius: 10rpx;
-  color: #fff;
-  font-size: 24rpx;
-}
-
-/* 分析卡片通用样式 */
-.analysis-card {
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 20rpx;
-  padding: 30rpx;
-  margin-bottom: 30rpx;
-}
-
-.card-title {
-  display: flex;
-  align-items: baseline;
-  margin-bottom: 30rpx;
-}
-
-.title-text {
-  font-size: 32rpx;
-  color: #fff;
-  font-weight: bold;
-  margin-right: 20rpx;
-}
-
-.title-desc {
-  font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* 五行图表 */
-.elements-chart {
-  display: flex;
-  justify-content: space-between;
-  height: 300rpx;
-  align-items: flex-end;
-  padding: 20rpx 0;
-}
-
-.element-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 18%;
-}
-
-.element-bar {
-  width: 100%;
-  background: linear-gradient(180deg, #ff6b6b, #4ecdc4);
-  border-radius: 10rpx;
-  position: relative;
-  transition: height 0.3s;
-}
-
-.element-value {
-  position: absolute;
-  top: -40rpx;
-  width: 100%;
-  text-align: center;
-  font-size: 24rpx;
-  color: #fff;
-}
-
-.element-name {
-  margin-top: 20rpx;
-  font-size: 24rpx;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-/* 运势内容 */
-.fortune-content {
-  color: #fff;
-}
-
-.fortune-item {
-  margin-bottom: 30rpx;
-}
-
-.item-title {
-  display: block;
-  font-size: 28rpx;
-  color: #4ecdc4;
-  margin-bottom: 10rpx;
-}
-
-.item-content {
-  font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.8);
-  line-height: 1.6;
-}
-
-/* 吉凶提醒 */
-.tips-group {
-  margin-bottom: 30rpx;
-}
-
-.tips-label {
-  display: inline-block;
-  padding: 6rpx 20rpx;
-  border-radius: 6rpx;
-  font-size: 24rpx;
-  margin-bottom: 20rpx;
-}
-
-.tips-label.good {
-  background: rgba(78, 205, 196, 0.2);
-  color: #4ecdc4;
-}
-
-.tips-label.bad {
-  background: rgba(255, 107, 107, 0.2);
-  color: #ff6b6b;
-}
-
-.tips-items {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.tip-item {
-  font-size: 26rpx;
-  color: rgba(255, 255, 255, 0.8);
-  margin-right: 30rpx;
-  margin-bottom: 10rpx;
-}
-
-/* 底部按钮 */
-.action-area {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 30rpx;
-  background: rgba(26, 26, 46, 0.9);
-  backdrop-filter: blur(10px);
-  display: flex;
-  justify-content: space-between;
-}
-
-.consult-btn, .share-btn {
-  width: 48%;
-  height: 88rpx;
-  border-radius: 44rpx;
-  font-size: 28rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.consult-btn {
-  background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
-  color: #fff;
-  border: none;
-}
-
-.share-btn {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border: 1rpx solid rgba(255, 255, 255, 0.2);
-}
+  <!-- 底部按钮 -->
+  <view class="action-area">
+    <button class="consult-btn" bindtap="startConsult">继续对话咨询</button>
+    <button class="share-btn" open-type="share">分享结果</button>
+  </view>
+</view>
