@@ -1,6 +1,6 @@
 // AI服务配置
 const AI_CONFIG = {
-  API_KEY: 'AIzaSyCF4hJOBdaHHofQj83j5_J1aLLwrpYxons',
+  API_KEY: '待替换',
   API_URL: 'https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent',
 };
 
